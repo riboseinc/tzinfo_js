@@ -1,0 +1,68 @@
+== tzinfo_js
+
+
+== NOTE
+
+Rails only supports tzinfo gem of versions ~0.3.38. 1.0+ is not
+supported.
+
+This gem supports both 0.3.38+ and 1.0+. The major difference is in 1.0+
+data definitions are included in a separate gem, tzinfo-data.
+
+== Installation
+
+Add `tzinfo_js` to your Gemfile:
+
+[source,ruby]
+----
+gem 'tzinfo_js', github: 'riboseinc/tzinfo_js'
+----
+
+== Usage with Rails
+
+`tzinfo_js` provides `.js` file per TZInfo timezone, such as
+`America/New_York.js`.
+
+
+[source,ruby]
+----
+<%= javascript_include_tag "tzinfo_js/tzinfo.js" %>
+<%= javascript_include_tag "tzinfo_js/definitions/#{tzinfo_identifier}.js" %>
+----
+
+Run `TzinfoJs::Registry.instance.zone_map` to obtain a map from all
+TZInfo zone names to their corresponding TzinfoDefinition class (with
+their offsets and transitions). The resulting hash also maps
+`linked_zones` to the correct zone information, so you will have
+multiple zone names linking to the same zone definition classes.
+
+[source,ruby]
+----
+TzinfoJs::Registry.instance.zone_map
+=> {"Africa/Asmera"=>#<TzinfoJs::TzinfoDefinition:0x007ffc57404150
+  @name="Africa/Asmara", @offsets=[[9332, "LMT"], [9332, "AMT"], [9320,
+    "ADMT"], [10800, "EAT"]], @sorted_transitions="14424380.351944445 1
+      39366.0 2 -13015698.316666666 3">, "Africa/Juba"...}
+----
+
+== Updating timezone definitions
+
+Simply run from this gem's path:
+
+----
+rake tzinfo_js:generate
+----
+
+== Requirements
+
+`tzinfo_js` requires the `tzinfo` gem and Rails 3.2 or later.
+
+
+== Running Tests
+
+TODO
+
+== License
+
+The gem is available as open source under the terms of the 
+http://opensource.org/licenses/MIT[MIT License].
