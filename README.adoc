@@ -1,4 +1,4 @@
-== tzinfo_js
+= tzinfo_js
 
 
 == NOTE
@@ -64,5 +64,6 @@ TODO
 
 == License
 
-The gem is available as open source under the terms of the 
+The gem is available as open source under the terms of the
 http://opensource.org/licenses/MIT[MIT License].
+

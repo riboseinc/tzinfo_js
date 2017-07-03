@@ -1,3 +1,5 @@
+require 'rails'
+
 module TzinfoJs
 
   class Engine < ::Rails::Engine

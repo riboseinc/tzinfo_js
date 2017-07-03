@@ -1,7 +1,7 @@
-require 'rails'
-require 'json'
-require 'tzinfo'
-require File.expand_path('../tzinfo_js/engine', __FILE__)
+require "json"
+require "tzinfo"
+require "tzinfo_js/engine"
+require "tzinfo_js/version"
 
 module TzinfoJs
 
