@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.2.0"
 
   spec.add_dependency 'json'
-  spec.add_dependency 'railties'
+  spec.add_dependency 'railties', '~>4.2'
   spec.add_dependency 'tzinfo', '> 1.0.0'
   spec.add_dependency 'tzinfo-data', '> 1.0.0'
   spec.add_dependency 'tilt'
