@@ -440,7 +440,7 @@ Gemfile.lock
 
 # Used by RuboCop. Remote config files pulled in from inherit_from100 10118    0 10118    0     0  22384      0 --:--:-- --:--:-- --:--:-- 22335
  directive.
-# .rubocop-https?--*
+.rubocop-https?--*
 
 ### SublimeText ###
 # Cache files for Sublime Text

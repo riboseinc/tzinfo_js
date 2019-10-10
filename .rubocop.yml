@@ -1,0 +1,33 @@
+# This project follows the Ribose OSS style guide.
+# https://github.com/riboseinc/oss-guides
+# All project-specific additions and overrides should be specified in this file.
+
+inherit_from:
+  - https://raw.githubusercontent.com/riboseinc/oss-guides/master/ci/rubocop.yml
+
+
+AllCops:
+  DisplayCopNames: false
+  StyleGuideCopsOnly: false
+  TargetRubyVersion: 2.5
+
+Rails:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+# https://github.com/rubocop-hq/rubocop/issues/6259#issuecomment-420734217
+Layout/ExtraSpacing:
+  ForceEqualSignAlignment: true
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Lint/PercentStringArray:
+  # AutoCorrect: false
+  Enabled: false
+
+Rails/DynamicFindBy:
+  AutoCorrect: false
