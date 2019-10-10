@@ -31,3 +31,6 @@ Lint/PercentStringArray:
 
 Rails/DynamicFindBy:
   AutoCorrect: false
+
+Style/ParenthesesAroundCondition:
+  AutoCorrect: false
