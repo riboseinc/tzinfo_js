@@ -1,17 +1,20 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+
+lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tzinfo_js/version'
+require "tzinfo_js/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = 'tzinfo_js'
+  spec.name          = "tzinfo_js"
   spec.version       = ::TzinfoJs::VERSION
-  spec.authors       = ['Ribose Inc.']
-  spec.email         = ['open.source@ribose.com']
+  spec.authors       = ["Ribose Inc."]
+  spec.email         = ["open.source@ribose.com"]
 
-  spec.summary       = 'Pure-JS TZInfo library'
-  spec.homepage      = 'https://github.com/riboseinc/tzinfo_js'
-  spec.license       = 'MIT'
+  spec.description   = "Pure-JS TZInfo library"
+  spec.summary       = "Pure-JS TZInfo library"
+  spec.homepage      = "https://github.com/riboseinc/tzinfo_js"
+  spec.license       = "MIT"
+  spec.platform      = Gem::Platform::RUBY
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the
   # 'allowed_push_host'
@@ -26,21 +29,21 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = 'exe'
+  spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  spec.require_paths = ["lib"]
 
-  spec.has_rdoc              = true
-  spec.required_ruby_version = ">= 2.2.0"
+  spec.required_ruby_version = ">= 2.5.0"
 
-  spec.add_dependency 'json'
-  spec.add_dependency 'railties', '~>4.2'
-  spec.add_dependency 'tzinfo', '> 1.0.0'
-  spec.add_dependency 'tzinfo-data', '> 1.0.0'
-  spec.add_dependency 'tilt'
-  spec.add_dependency 'closure-compiler'
+  spec.add_dependency "closure-compiler"
+  spec.add_dependency "json"
+  spec.add_dependency "railties", "~>4.2"
+  spec.add_dependency "tilt"
+  spec.add_dependency "tzinfo", "> 1.0.0"
+  spec.add_dependency "tzinfo-data", "> 1.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+
 end

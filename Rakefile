@@ -4,4 +4,4 @@ load "lib/tzinfo_js/tasks/tasks.rake"
 
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :spec
+task default: :spec

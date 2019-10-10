@@ -1,21 +1,18 @@
-require 'closure-compiler'
-require 'fileutils'
-require 'pp'
+require "closure-compiler"
+require "fileutils"
+require "pp"
 
 module TzinfoJs
   class Registry
-
     include Singleton
 
-    attr_reader :loaded
-    attr_accessor :tzmap
-    attr_accessor :linked_map
-    attr_reader :combined_map
+    attr_reader :loaded, :combined_map
+    attr_accessor :tzmap, :linked_map
 
     def initialize
-      @loaded = false
-      @tzmap = {}
-      @linked_map = {}
+      @loaded       = false
+      @tzmap        = {}
+      @linked_map   = {}
       @combined_map = {}
     end
 
@@ -24,7 +21,8 @@ module TzinfoJs
     end
 
     def js_export_path
-      Engine.root.join('lib', 'assets', 'javascripts', 'tzinfo_js', 'definitions')
+      Engine.root.join("lib", "assets", "javascripts", "tzinfo_js",
+                       "definitions")
     end
 
     def js_export_path_setup
@@ -32,7 +30,7 @@ module TzinfoJs
     end
 
     def js_export_path_empty
-      FileUtils.rm_rf(File.join(js_export_path, '*'))
+      FileUtils.rm_rf(File.join(js_export_path, "*"))
     end
 
     def load_zones
@@ -43,11 +41,11 @@ module TzinfoJs
 
       # @linked_map may have more than one redirect, we first resolve them all:
       # e.g., Africa/Asmera => Africa/Asmara => Africa/Nairobi
-      resolved_link_map = all_keys.inject({}) do |acc, linked_zone|
+      resolved_link_map = all_keys.reduce({}) do |acc, linked_zone|
 
         # puts "Resolving zone: #{linked_zone}"
         resolved_zone = linked_zone
-        counter = 1
+        counter       = 1
         while @tzmap[resolved_zone].nil?
           # puts "Resolving zone attempt #{counter}: #{linked_zone}: #{resolved_zone}"
           resolved_zone = @linked_map[resolved_zone]
@@ -72,9 +70,9 @@ module TzinfoJs
         # Copy out the tzinfo_definition object and tell it that we are a
         # linked_zone: use the child zone's key but the parent zone's
         # definition
-        tzinfo_definition = tzinfo_definition.dup
+        tzinfo_definition           = tzinfo_definition.dup
         tzinfo_definition.zone_name = name
-        @combined_map[name] = tzinfo_definition
+        @combined_map[name]         = tzinfo_definition
       end
 
       mark_loaded
@@ -101,23 +99,24 @@ module TzinfoJs
       @combined_map.each_with_index do |(name, zone), index|
         filename = File.join(js_export_path, "#{name}.js")
         FileUtils.mkdir_p(File.dirname(filename))
-        File.open(filename, 'w') do |f|
+        File.open(filename, "w") do |f|
           f << compressor.compress(zone.to_js)
           f << NO_COMPRESS_MSG
         end
-        #print "#{name} "
-        print '.' if index % 20 == 0
+        # print "#{name} "
+        print "." if index % 20 == 0
+
         index += 1
-        #Kernel::system "gzip <#{filename} >#{filename+".gz'}'
+        # Kernel::system "gzip <#{filename} >#{filename+".gz"}"
       end
     end
 
     def zone_map_export_path
-      Engine.root.join('lib', 'data', 'zone_map.json')
+      Engine.root.join("lib", "data", "zone_map.json")
     end
 
     def export_zone_map
-      File.open(zone_map_export_path, 'w') do |f|
+      File.open(zone_map_export_path, "w") do |f|
         f << zone_map.to_json
       end
     end
@@ -127,17 +126,18 @@ module TzinfoJs
 
       # No file, cannot load
       unless File.file?(zone_map_export_path)
-        puts '[tzinfo_js] no zone_map.json file, re-parse TZInfo files'
+        puts "[tzinfo_js] no zone_map.json file, re-parse TZInfo files"
         return false
       end
 
-      puts '[tzinfo_js] zone_map.json exists, directly load'
+      puts "[tzinfo_js] zone_map.json exists, directly load"
       loaded_file = IO.read(zone_map_export_path)
-      loaded_map = JSON.load(loaded_file)
+      loaded_map  = JSON.load(loaded_file)
 
       @combined_map = {}
       loaded_map.each_pair do |name, tzinfo_def|
-        @combined_map[name] = TzinfoDefinition.new_from_hash(tzinfo_def.symbolize_keys)
+        @combined_map[name] =
+          TzinfoDefinition.new_from_hash(tzinfo_def.symbolize_keys)
       end
 
       mark_loaded
@@ -154,16 +154,13 @@ module TzinfoJs
       export_js_files
       export_zone_map
 
-      puts ' Done.'
-      puts 'Please put the following text into the commit message:'
+      puts " Done."
+      puts "Please put the following text into the commit message:"
       puts "  Regenerate asset files for { tzinfo: v#{Loader.tzinfo_version}, tzinfo-data: v#{Loader.tzinfo_data_version} }"
     end
 
     def load_and_export
       export_all
     end
-
   end
 end
-
-
