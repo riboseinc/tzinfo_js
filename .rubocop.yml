@@ -5,7 +5,6 @@
 inherit_from:
   - https://raw.githubusercontent.com/riboseinc/oss-guides/master/ci/rubocop.yml
 
-
 AllCops:
   DisplayCopNames: false
   StyleGuideCopsOnly: false
@@ -13,6 +12,9 @@ AllCops:
 
 Rails:
   Enabled: true
+
+Layout/DotPosition:
+  EnforcedStyle: leading
 
 Layout/EmptyLinesAroundBlockBody:
   Enabled: false
@@ -37,3 +39,9 @@ Rails/ApplicationRecord:
 
 Style/ParenthesesAroundCondition:
   AutoCorrect: false
+
+Security/YAMLLoad:
+  AutoCorrect: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
