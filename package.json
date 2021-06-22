@@ -1,0 +1,29 @@
+{
+  "name": "tzinfo_js",
+  "version": "0.0.1",
+  "description": "Pure-JS TZInfo Rails Gem",
+  "main": "lib/assets/javascripts/tzinfo_js/tzinfo.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riboseinc/tzinfo_js.git"
+  },
+  "keywords": [
+    "timezone-library",
+    "timezone"
+  ],
+  "author": "Ribose Inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/riboseinc/tzinfo_js/issues"
+  },
+  "homepage": "https://github.com/riboseinc/tzinfo_js#readme",
+  "devDependencies": {
+    "eslint": "^7.29.0"
+  }
+}
