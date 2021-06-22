@@ -1,6 +1,6 @@
 {
   "name": "tzinfo_js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Pure-JS TZInfo Rails Gem",
   "main": "lib/assets/javascripts/tzinfo_js/tzinfo.js",
   "directories": {
