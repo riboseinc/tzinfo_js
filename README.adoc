@@ -1,5 +1,9 @@
 = tzinfo_js
 
+ifdef::env-github[]
+image:https://github.com/riboseinc/tzinfo_js/actions/workflows/Ruby.yml/badge.svg[
+  GitHub Workflow Status, link="https://github.com/riboseinc/tzinfo_js/actions/workflows/Ruby.yml"]
+endif::[]
 
 == NOTE
 
@@ -66,4 +70,3 @@ TODO
 
 The gem is available as open source under the terms of the
 http://opensource.org/licenses/MIT[MIT License].
-
