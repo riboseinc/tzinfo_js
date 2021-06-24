@@ -9,7 +9,9 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "pnpm run lint -- --fix || :",
-    "build": "babel src --out-dir \"lib\" --extensions \".js,.jsx,.ts,.tsx\" --copy-files --no-copy-ignored",
+    "build:dev-support": "babel dev/src --out-dir dev/lib --extensions \".js,.jsx,.ts,.tsx\" --no-copy-ignored",
+    "build:lib": "babel src --out-dir lib --extensions \".js,.jsx,.ts,.tsx\" --copy-files --no-copy-ignored",
+    "build": "pnpm run build:lib ; pnpm run build:dev-support",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

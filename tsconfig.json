@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "lib",
+    "rootDir": "src",
+    "typeRoots": [
+      "src/@types",
+      "node_modules/@types"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "composite": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "strictNullChecks": true,
+    "target": "esnext"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    ".eslintrc.js",
+    "build",
+    "lib",
+    "node_modules",
+    "public",
+    "webpack.config.babel.js",
+    "webpack.config.eslint.js"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "sourceType": "unambiguous",
+  "plugins": [
+    "@babel/plugin-proposal-function-bind",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-partial-application",
+    [
+      "@babel/plugin-proposal-pipeline-operator",
+      {
+        "proposal": "fsharp"
+      }
+    ],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-top-level-await",
+    "@babel/plugin-transform-runtime",
+    "minify-dead-code-elimination",
+    [
+      "module-resolver",
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ],
+        "root": [
+          "./src"
+        ],
+        "alias": {
+        }
+      }
+    ]
+  ],
+  "presets": [
+    [
+      "@babel/preset-typescript"
+    ],
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "> 1%",
+            "chrome >= 72"
+          ]
+        },
+        "debug": false,
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ]
+  ]
+}
