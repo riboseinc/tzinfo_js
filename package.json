@@ -7,6 +7,9 @@
     "lib": "lib"
   },
   "scripts": {
+    "lint": "eslint src",
+    "lint:fix": "pnpm run lint -- --fix || :",
+    "build": "babel src --out-dir \"lib\" --extensions \".js,.jsx,.ts,.tsx\" --copy-files --no-copy-ignored",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
