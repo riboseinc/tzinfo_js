@@ -69,13 +69,13 @@ const config = {
       }],
     'new-cap' : ['warn', {
       newIsCap   : false,
-      properties : false
+      properties : false,
     }],
-    'no-cond-assign'  : ['error', 'except-parens'],
-    'no-constant-condition': [
+    'no-cond-assign'        : ['error', 'except-parens'],
+    'no-constant-condition' : [
       'error', {
         checkLoops : false,
-      }
+      },
     ],
     'no-multi-spaces' : [
       'warn', {
@@ -87,12 +87,13 @@ const config = {
       'error', {
         allowForLoopAfterthoughts : true,
       }],
-    'no-underscore-dangle'     : ['off'],
-    'no-unused-vars': [
+    'no-underscore-dangle' : ['off'],
+    'no-unused-vars'       : [
       'warn', {
+        varsIgnorePattern : '^_',
         argsIgnorePattern : '^_',
         args              : 'none',
-      }
+      },
     ],
     'no-void'                  : ['error', { allowAsStatement: true }],
     'node/no-callback-literal' : ['off'],
