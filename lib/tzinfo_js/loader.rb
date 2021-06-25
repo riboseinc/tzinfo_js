@@ -10,9 +10,7 @@ module TzinfoJs
 
     # Hacks into TZInfo
     def insert_listener_into_tzinfo
-      require "tzinfo/timezone_definition"
-
-      TZInfo::TimezoneDefinition.class_eval do
+      TZInfo.const_get(:TimezoneDefinition).class_eval do
         def self.included(into)
           # puts "HACKED INTO TZINFO!"
           into.extend TzinfoJs::TimezoneDefinitionExtensions

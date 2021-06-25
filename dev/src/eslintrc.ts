@@ -1,6 +1,17 @@
+import * as path from 'path';
+import aliases from './aliases.config';
 import esRibose from './eslintrc.ribose';
 
-const { rules: riboseStyles } = esRibose;
+const { rules: riboseStyles } = esRibose,
+
+      /*
+       * Resolve aliases.
+       *
+       * See:
+       * https://github.com/Izhaki/codinsky/blob/e0de8fa9fef562f10493378fd649fdf4aeb34293/.eslintrc.js
+       */
+      // https://intellij-support.jetbrains.com/hc/en-us/community/posts/360009471420-parserOptions-project-eslint-path-is-resolved-wrong?page=1#community_comment_360002159120
+      aliasesResolverPath = path.resolve(__dirname, 'eslintAliasesResolver.js');
 
 /* eslint-disable import/no-unused-modules */
 export default {
@@ -14,6 +25,16 @@ export default {
   settings : {
     'import/parsers' : {
       '@typescript-eslint/parser' : ['.ts', '.tsx'],
+    },
+    'import/resolver' : {
+      [aliasesResolverPath]                 : aliases,
+      'eslint-import-resolver-custom-alias' : {
+        alias : {
+          '@' : './lib',
+        },
+        extensions : ['.js', '.jsx', '.ts', '.tsx', '.ejs'],
+      },
+      'babel-module' : {},
     },
   },
   overrides : [

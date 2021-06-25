@@ -4,5 +4,6 @@ if zone_name != name
 %>
 /* This zone is linked from <%= name.to_json %> */
 <% end %>
-TZInfo.d[<%= (zone_name || name).to_json %>] = <%= data.to_json %>;
-
+module.exports = {
+  <%= (zone_name || name).to_json %> : <%= data.to_json %>
+};

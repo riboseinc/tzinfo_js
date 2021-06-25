@@ -1,4 +1,3 @@
-require "closure-compiler"
 require "fileutils"
 require "pp"
 
@@ -21,7 +20,7 @@ module TzinfoJs
     end
 
     def js_export_path
-      Engine.root.join("lib", "assets", "javascripts", "tzinfo_js",
+      Engine.root.join("src", "assets", "javascripts", "tzinfo_js",
                        "definitions")
     end
 
@@ -94,13 +93,12 @@ module TzinfoJs
       # name is zone name of tzinfo, zone_name is name of actual zone (if
       # tzinfo zone is linked)
 
-      compressor = Closure::Compiler.new
-
       @combined_map.each_with_index do |(name, zone), index|
         filename = File.join(js_export_path, "#{name}.js")
         FileUtils.mkdir_p(File.dirname(filename))
         File.open(filename, "w") do |f|
-          f << compressor.compress(zone.to_js)
+          # warn "Printing to file #{filename}"
+          f << zone.to_js
           f << NO_COMPRESS_MSG
         end
         # print "#{name} "

@@ -101,35 +101,17 @@ const root = global,
           return scriptTag;
         },
 
-        /* TODO: DRY using $i.AL */
         // load a single zone every time on demand
         loadZone : function(zoneName: string, callback: (x: string) => void): void {
-          const scriptId = 'user_tzinfo_js_script',
-                oldScriptTag = $('#' + scriptId),
-                scriptTag = tzi.zoneScriptTag(zoneName);
-
-          /* remove the old script tag */
-          if (oldScriptTag.length > 0) {
-            oldScriptTag.remove();
-          }
-
-          if (typeof callback === 'function') {
-            scriptTag.bind('load readystatechange', function(_e) {
-              const rs = this.readyState;
-              if (
-                rs !== undefined &&
-                rs !== null &&
-                rs !== 'loaded' &&
-                rs !== 'complete'
-              ) {
-                return;
-              }
-
-              callback(zoneName);
-            });
-          }
-
-          return $('head').get(0).appendChild(scriptTag.get(0));
+          // import(`@/assets/javascripts/tzinfo_js/definitions/${zoneName}`).
+          import('@/assets/javascripts/tzinfo_js/definitions/Etc/UTC').
+            then(
+              (data) => {
+                tzi.d = { ...tzi.d, ...data };
+                callback(zoneName);
+              },
+              (...err) => console.error(...err),
+            );
         },
 
       },
@@ -697,7 +679,10 @@ tzi.makeDateWrapper = function(zone: tzi.Zone) {
   function parse(string: string): number {
     let components = tzi.parseSimpleDateIntoComponents(string);
 
-    if ((components === undefined || components === null) && typeof root.DateParser === 'function') {
+    if (
+      (components === undefined || components === null) &&
+      typeof root.DateParser === 'function'
+    ) {
       components = root.DateParser.parseIntoComponents(string);
     }
 

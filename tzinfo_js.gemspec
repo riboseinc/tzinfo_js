@@ -35,12 +35,11 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.5.0"
 
-  spec.add_dependency "closure-compiler"
   spec.add_dependency "json"
   spec.add_dependency "railties"
   spec.add_dependency "tilt"
-  spec.add_dependency "tzinfo", "> 1.0.0"
-  spec.add_dependency "tzinfo-data", "> 1.0.0"
+  spec.add_dependency "tzinfo"
+  spec.add_dependency "tzinfo-data"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
